@@ -928,3 +928,20 @@ h2 { font-weight: 800; font-size: clamp(2rem, 4.2vw, 3.2rem); text-wrap: balance
   .card { padding: 26px 22px 28px; }
   .card__icon { margin-bottom: 16px; }
 }
+
+/* ===== v7: subtle pink accent ===== */
+:root { --pink: #ff8ac4; --pink-soft: rgba(255,138,196,.16); }
+.section__head h2::after, .split__text h2::after { background: linear-gradient(90deg, var(--accent), var(--pink)); }
+.hero__type { background: linear-gradient(90deg, var(--accent-light), var(--pink)); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; padding-bottom: .06em; }
+.hero__glow--b { background: rgba(255,138,196,.12); }
+.progress { background: linear-gradient(90deg, var(--accent), var(--accent-light) 60%, var(--pink)); }
+.plan--featured {
+  background: linear-gradient(var(--black), var(--black)) padding-box,
+              linear-gradient(140deg, #8cb8ff, #2f7cf6 35%, #0a1f44 65%, var(--pink)) border-box;
+}
+.tl li.is-now > span { border-color: var(--pink); box-shadow: 0 0 0 6px var(--pink-soft); }
+@keyframes tlPulse { 50% { box-shadow: 0 0 0 10px rgba(255,138,196,.04); } }
+.journey li:last-child .journey__dot { background: linear-gradient(135deg, var(--accent), var(--pink)); }
+.help-card::before { content: ""; position: absolute; left: -60px; bottom: -80px; width: 220px; height: 220px; border-radius: 50%; background: rgba(255,138,196,.14); filter: blur(50px); pointer-events: none; }
+.map__pin { background: var(--pink); box-shadow: 0 0 0 8px rgba(255,138,196,.22), 0 0 0 18px rgba(255,138,196,.08); }
+::selection { background: rgba(255,138,196,.35); }
