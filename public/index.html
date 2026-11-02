@@ -71,9 +71,12 @@
   <main id="top">
     <!-- Hero -->
     <section class="hero">
-      <div class="hero__media" aria-hidden="true" style="background-image:url('assets/img/hero-fiber.png')"></div>
+      <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero__glow hero__glow--a" aria-hidden="true"></div>
+      <div class="hero__glow hero__glow--b" aria-hidden="true"></div>
       <div class="hero__grid" aria-hidden="true"></div>
-      <div class="container hero__inner">
+      <div class="container hero__layout">
+      <div class="hero__inner">
         <p class="eyebrow reveal" data-only="home">Интернет и телевизия · Кърджали и региона</p>
         <p class="eyebrow reveal" data-only="business">Решения за бизнеса · Кърджали и региона</p>
 
@@ -99,6 +102,30 @@
           <div data-only="business"><dt>FTTH</dt><dd>директна оптика</dd></div>
           <div><dt>24/7</dt><dd>техническа поддръжка</dd></div>
         </dl>
+      </div>
+
+      <!-- Hero visual: live connection card -->
+      <div class="hero__visual reveal" aria-hidden="true">
+        <div class="device">
+          <div class="device__head"><span class="device__dot"></span><span data-only="home">Твоята връзка</span><span data-only="business">Офис връзка</span><span class="device__live">НА ЖИВО</span></div>
+          <div class="gauge">
+            <svg viewBox="0 0 200 120"><defs><linearGradient id="gg" x1="0" x2="1"><stop offset="0" stop-color="#2f7cf6"/><stop offset="1" stop-color="#8cb8ff"/></linearGradient></defs>
+              <path d="M20 110 A80 80 0 0 1 180 110" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="12" stroke-linecap="round"/>
+              <path id="gauge-arc" d="M20 110 A80 80 0 0 1 180 110" fill="none" stroke="url(#gg)" stroke-width="12" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+            </svg>
+            <div class="gauge__val"><b id="gauge-num">0</b><span>Mbps</span></div>
+          </div>
+          <div class="device__rows">
+            <div><span>Пинг</span><b id="ping">4 ms</b></div>
+            <div><span>Връзка</span><b data-only="home">GPON оптика</b><b data-only="business">FTTH оптика</b></div>
+            <div><span>Стабилност</span><b>99.9%</b></div>
+          </div>
+          <div class="spark"><svg viewBox="0 0 240 40" preserveAspectRatio="none"><path id="spark-path" d="" fill="none" stroke="#8cb8ff" stroke-width="2"/></svg></div>
+        </div>
+        <div class="float-card float-card--tv" data-only="home"><span class="float-card__ico">▶</span><div><b>190+ канала</b><small>65+ в HD · връщане 24 ч</small></div></div>
+        <div class="float-card float-card--tv" data-only="business"><span class="float-card__ico">◉</span><div><b>Видеонаблюдение</b><small>гледате обекта отвсякъде</small></div></div>
+        <div class="float-card float-card--sup"><span class="float-card__ico float-card__ico--ok">✓</span><div><b>Поддръжка 24/7</b><small>местен екип в Кърджали</small></div></div>
+      </div>
       </div>
       <a href="#plans" class="hero__scroll" aria-label="Надолу"><span></span></a>
     </section>
@@ -157,8 +184,32 @@
           <h2 data-only="business">От огледа до поддръжката</h2>
           <p class="muted" data-only="home">Над 190 български и чуждестранни канала, от които над 65 в HD. Един приемник е включен във всеки пакет интернет + телевизия.</p>
           <p class="muted" data-only="business">Проектираме, изграждаме и поддържаме – с наши екипи и по собствена мрежа, без посредници.</p>
-          <figure class="split__media" data-only="home"><img src="assets/img/home-tv.png" alt="Семейство гледа телевизия вкъщи" loading="lazy"></figure>
-          <figure class="split__media" data-only="business"><img src="assets/img/business-network.png" alt="Сървърно и мрежово оборудване" loading="lazy"></figure>
+          <figure class="mock mock--tv" data-only="home" aria-label="Интерфейс на интерактивната телевизия">
+            <div class="tv">
+              <div class="tv__screen">
+                <div class="tv__now"><span class="tv__live">● НА ЖИВО</span><b>Вечерни новини</b><small>20:00 – 20:45 · BNT 1 HD</small><div class="tv__prog"><span></span></div></div>
+                <div class="tv__pip"><span>PiP</span></div>
+              </div>
+              <div class="epg">
+                <div class="epg__row"><b>bTV HD</b><span class="is-on">Тази вечер</span><span>Филм</span></div>
+                <div class="epg__row"><b>Nova HD</b><span>Сериал</span><span class="is-on">Шоу</span></div>
+                <div class="epg__row"><b>DIEMA SPORT</b><span class="is-on">Футбол на живо</span><span>Студио</span></div>
+              </div>
+              <div class="tv__bar"><span>⟲ 24 ч назад</span><span>☰ 7 дни програма</span><span>🔒 Родителски контрол</span></div>
+            </div>
+          </figure>
+          <figure class="mock mock--biz" data-only="business" aria-label="Табло за наблюдение на бизнес връзката">
+            <div class="biz">
+              <div class="biz__head"><b>Офис – Кърджали</b><span class="biz__ok">● Онлайн</span></div>
+              <div class="biz__grid">
+                <div class="biz__kpi"><small>Скорост</small><b>600</b><span>Mbps</span></div>
+                <div class="biz__kpi"><small>Устройства</small><b>42</b><span>активни</span></div>
+                <div class="biz__kpi"><small>Камери</small><b>8</b><span>записват</span></div>
+              </div>
+              <div class="biz__cams"><span></span><span></span><span></span><span></span></div>
+              <svg class="biz__chart" viewBox="0 0 300 70" preserveAspectRatio="none"><path d="M0 55 C30 50 40 30 70 34 S120 20 150 26 200 10 230 18 270 8 300 12 L300 70 L0 70Z" fill="rgba(47,124,246,.18)"/><path d="M0 55 C30 50 40 30 70 34 S120 20 150 26 200 10 230 18 270 8 300 12" fill="none" stroke="#2f7cf6" stroke-width="2.5"/></svg>
+            </div>
+          </figure>
         </div>
         <ol class="steps" id="features-list"></ol>
       </div>
@@ -370,5 +421,6 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/hero.js"></script>
 </body>
 </html>
