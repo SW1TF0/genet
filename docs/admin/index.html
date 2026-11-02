@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Админ панел – Global Net</title>
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <!-- Login -->
+  <section class="login" id="login" hidden>
+    <form class="login__card" id="login-form">
+      <div class="brand"><img class="brand__img" src="../assets/img/mark.png" width="30" height="30" alt="">GLOBAL<b>NET</b></div>
+      <h1>Админ панел</h1>
+      <label class="fld"><span>Потребител</span><input id="l-user" name="username" autocomplete="username" required></label>
+      <label class="fld"><span>Парола</span><input id="l-pass" name="password" type="password" autocomplete="current-password" required></label>
+      <button class="b b--primary b--block" type="submit">Вход</button>
+      <p class="err" id="login-err" role="alert"></p>
+      <a class="back" href="../">← Към сайта</a>
+    </form>
+  </section>
+
+  <!-- App -->
+  <div class="app" id="app" hidden>
+    <aside class="side" id="side">
+      <div class="brand"><img class="brand__img" src="../assets/img/mark.png" width="30" height="30" alt="">GLOBAL<b>NET</b></div>
+      <nav class="side__nav" id="side-nav">
+        <a href="#dashboard" data-view="dashboard"><i>▦</i>Табло</a>
+        <a href="#requests" data-view="requests"><i>✉</i>Заявки <em class="badge" id="new-badge" hidden>0</em></a>
+        <p class="side__label">Съдържание</p>
+        <a href="#plans" data-view="plans"><i>€</i>Планове и цени</a>
+        <a href="#services" data-view="services"><i>✦</i>Услуги</a>
+        <a href="#promotions" data-view="promotions"><i>%</i>Промоции</a>
+        <a href="#news" data-view="news"><i>✎</i>Новини</a>
+        <a href="#faq" data-view="faq"><i>?</i>Въпроси (ЧЗВ)</a>
+        <a href="#coverage" data-view="coverage"><i>⌖</i>Покритие</a>
+        <p class="side__label">Система</p>
+        <a href="#settings" data-view="settings"><i>⚙</i>Контакти и настройки</a>
+        <a href="#profile" data-view="profile"><i>☺</i>Профил и достъп</a>
+      </nav>
+      <div class="side__foot">
+        <a href="../" target="_blank" rel="noopener" class="b b--ghost b--block">Отвори сайта ↗</a>
+        <button class="b b--ghost b--block" id="logout">Изход</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="top">
+        <button class="burger" id="burger" aria-label="Меню">☰</button>
+        <h1 id="view-title">Табло</h1>
+        <span class="top__user" id="me"></span>
+      </header>
+      <div class="view" id="view"></div>
+    </main>
+  </div>
+
+  <!-- Drawer for editing -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__backdrop" data-close></div>
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+      <header class="drawer__head"><h2 id="drawer-title"></h2><button class="x" data-close aria-label="Затвори">×</button></header>
+      <div class="drawer__body" id="drawer-body"></div>
+    </div>
+  </div>
+
+  <!-- Confirm dialog -->
+  <dialog class="confirm" id="confirm">
+    <p id="confirm-text"></p>
+    <div class="confirm__btns"><button class="b b--ghost" value="no" id="confirm-no">Отказ</button><button class="b b--danger" id="confirm-yes">Изтрий</button></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="../assets/js/config.js"></script>
+  <script src="../assets/js/backend.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

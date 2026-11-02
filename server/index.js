@@ -110,7 +110,8 @@ app.get("/api/requests/track", rateLimit("track", 30, 10 * 60 * 1000), (req, res
 
 /* ---------------- Admin auth ---------------- */
 function requireAdmin(req, res, next) {
-  const token = cookies(req).gn_admin;
+  // Cookie for the same-origin admin; x-gn-token header for static hosting (see assets/js/backend.js)
+  const token = cookies(req).gn_admin || req.get("x-gn-token");
   if (!token) return res.status(401).json({ error: "Не сте влезли." });
   const s = db.prepare(`SELECT s.token, s.expires_at, a.id, a.username, a.name FROM sessions s JOIN admins a ON a.id = s.admin_id WHERE s.token = ?`).get(token);
   if (!s || s.expires_at < Date.now()) return res.status(401).json({ error: "Сесията е изтекла." });
@@ -132,11 +133,11 @@ app.post("/api/admin/login", rateLimit("login", 10, 15 * 60 * 1000), (req, res) 
   db.prepare("DELETE FROM sessions WHERE expires_at < ?").run(Date.now());
   db.prepare("INSERT INTO sessions (token, admin_id, expires_at) VALUES (?,?,?)").run(token, a.id, Date.now() + SESSION_DAYS * 864e5);
   setSessionCookie(res, token, SESSION_DAYS * 86400);
-  res.json({ username: a.username, name: a.name });
+  res.json({ username: a.username, name: a.name, token });
 });
 
 app.post("/api/admin/logout", (req, res) => {
-  const token = cookies(req).gn_admin;
+  const token = cookies(req).gn_admin || req.get("x-gn-token");
   if (token) db.prepare("DELETE FROM sessions WHERE token = ?").run(token);
   setSessionCookie(res, "", 0);
   res.json({ ok: true });
@@ -322,6 +323,8 @@ app.use("/api", (req, res) => res.status(404).json({ error: "Not found" }));
 
 /* ---------------- Static site ---------------- */
 const pub = path.join(__dirname, "..", "public");
+// The admin page uses relative paths, so it must be served as /admin/
+app.get("/admin", (req, res) => res.redirect(301, "/admin/"));
 app.use(express.static(pub, { extensions: ["html"], maxAge: isProd ? "1h" : 0 }));
 app.get("/admin*", (req, res) => res.sendFile(path.join(pub, "admin", "index.html")));
 app.use((req, res) => res.status(404).sendFile(path.join(pub, "404.html")));

@@ -5,30 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>Админ панел – Global Net</title>
-  <link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="icon" href="../assets/img/favicon-32.png" type="image/png" sizes="32x32">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/admin/admin.css">
+  <link rel="stylesheet" href="admin.css">
 </head>
 <body>
   <!-- Login -->
   <section class="login" id="login" hidden>
     <form class="login__card" id="login-form">
-      <div class="brand"><img class="brand__img" src="/assets/img/mark.png" width="30" height="30" alt="">GLOBAL<b>NET</b></div>
+      <div class="brand"><img class="brand__img" src="../assets/img/mark.png" width="30" height="30" alt="">GLOBAL<b>NET</b></div>
       <h1>Админ панел</h1>
       <label class="fld"><span>Потребител</span><input id="l-user" name="username" autocomplete="username" required></label>
       <label class="fld"><span>Парола</span><input id="l-pass" name="password" type="password" autocomplete="current-password" required></label>
       <button class="b b--primary b--block" type="submit">Вход</button>
       <p class="err" id="login-err" role="alert"></p>
-      <a class="back" href="/">← Към сайта</a>
+      <a class="back" href="../">← Към сайта</a>
     </form>
   </section>
 
   <!-- App -->
   <div class="app" id="app" hidden>
     <aside class="side" id="side">
-      <div class="brand"><img class="brand__img" src="/assets/img/mark.png" width="30" height="30" alt="">GLOBAL<b>NET</b></div>
+      <div class="brand"><img class="brand__img" src="../assets/img/mark.png" width="30" height="30" alt="">GLOBAL<b>NET</b></div>
       <nav class="side__nav" id="side-nav">
         <a href="#dashboard" data-view="dashboard"><i>▦</i>Табло</a>
         <a href="#requests" data-view="requests"><i>✉</i>Заявки <em class="badge" id="new-badge" hidden>0</em></a>
@@ -44,7 +44,7 @@
         <a href="#profile" data-view="profile"><i>☺</i>Профил и достъп</a>
       </nav>
       <div class="side__foot">
-        <a href="/" target="_blank" rel="noopener" class="b b--ghost b--block">Отвори сайта ↗</a>
+        <a href="../" target="_blank" rel="noopener" class="b b--ghost b--block">Отвори сайта ↗</a>
         <button class="b b--ghost b--block" id="logout">Изход</button>
       </div>
     </aside>
@@ -75,6 +75,6 @@
   </dialog>
 
   <div class="toast" id="toast" role="status"></div>
-  <script src="/admin/admin.js"></script>
+  <script src="admin.js"></script>
 </body>
 </html>

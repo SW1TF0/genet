@@ -50,6 +50,17 @@ test/             API tests (node:test)
 - The seeded news items are based on titles from the old site. Check their dates and text in the admin panel.
 - Back up the `data/` folder regularly. It holds all requests and content.
 
-## Статична версия (GitHub Pages)
+## GitHub Pages + Supabase (работи без собствен сървър)
 
-`npm run build:pages` прави копие на публичния сайт в `docs/`, с вградени данни, без админ панел и без сървър. Формите там работят в демо режим. В GitHub: Settings → Pages → Deploy from a branch → този клон, папка `/docs`. Ако Pages е настроен на корена (`/`), `index.html` в корена пренасочва към `docs/`.
+Сайтът и админ панелът могат да се хостват безплатно на GitHub Pages, а данните (заявки, планове, настройки, админи) да са в Supabase:
+
+- `supabase/migrations/` е схемата и началното съдържание. RLS е включено без политики, така че таблиците не са достъпни директно с публичния ключ.
+- `supabase/functions/api/` е Edge Function със същите адреси като `server/index.js`. Паролите са с bcrypt (pgcrypto), а входът в админа е с токен в заглавката `x-gn-token`.
+- `public/assets/js/backend.js` пренасочва всички `/api/...` заявки към адреса от `window.GN_API_BASE`, когато е зададен.
+- `npm run build:pages` прави `docs/` с `config.js` (адреса на функцията, по подразбиране проекта `qjutfulgqnarqglqongd`, или `GN_API_BASE=...`).
+
+Настройка в GitHub: Settings → Pages → Deploy from a branch → този клон, папка `/docs`. Сайтът: `https://sw1tf0.github.io/genet/`, админ: `https://sw1tf0.github.io/genet/admin/`.
+
+Нов админ (SQL в Supabase): `insert into admins (username, name, pass_hash) values ('ime', 'Име', crypt('парола', gen_salt('bf', 10)));`
+
+Локалният Node сървър (`npm start`) продължава да работи както преди, със SQLite.
