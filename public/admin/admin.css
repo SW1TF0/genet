@@ -170,3 +170,4 @@ td .sub { display: block; color: var(--muted); font-size: .8rem; }
   .form .cols { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; } }
+.brand__img { width: 30px; height: 30px; border-radius: 50%; background: #fff; flex: none; }

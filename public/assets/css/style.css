@@ -973,3 +973,8 @@ h2 { font-weight: 800; font-size: clamp(2rem, 4.2vw, 3.2rem); text-wrap: balance
   .plan--wide .plan__price { margin-top: 16px; }
 }
 @media (max-width: 640px) { .plans { grid-template-columns: 1fr; } }
+
+/* ===== v9: real logo ===== */
+.logo__img { width: 40px; height: 40px; border-radius: 50%; flex: none; box-shadow: 0 0 0 2px rgba(255,255,255,.9), 0 6px 18px -6px rgba(0,0,0,.5); background: #fff; transition: transform 500ms var(--ease); }
+.logo:hover .logo__img { transform: rotate(-12deg) scale(1.05); }
+.logo__badge { width: 120px; height: 120px; border-radius: 50%; background: #fff; box-shadow: 0 12px 30px -12px rgba(0,0,0,.6); }
