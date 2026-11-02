@@ -95,3 +95,20 @@ test("settings update", async () => {
   assert.equal(site.body.settings.announcement, "Тест обява");
   assert.equal(site.body.settings.offices[0].name, "X");
 });
+
+test("admin page: /admin redirects once to /admin/, which is served", async () => {
+  const r1 = await fetch(base + "/admin", { redirect: "manual" });
+  assert.equal(r1.status, 301);
+  assert.equal(r1.headers.get("location"), "/admin/");
+  const r2 = await fetch(base + "/admin/", { redirect: "manual" });
+  assert.equal(r2.status, 200);
+  assert.match(await r2.text(), /admin\.js/);
+});
+
+test("admin token header works without cookies (static hosting)", async () => {
+  const login = await fetch(base + "/api/admin/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ username: "admin", password: process.env.ADMIN_PASSWORD }) });
+  const { token } = await login.json();
+  assert.ok(token);
+  const me = await fetch(base + "/api/admin/me", { headers: { "x-gn-token": token } });
+  assert.equal(me.status, 200);
+});

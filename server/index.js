@@ -324,7 +324,7 @@ app.use("/api", (req, res) => res.status(404).json({ error: "Not found" }));
 /* ---------------- Static site ---------------- */
 const pub = path.join(__dirname, "..", "public");
 // The admin page uses relative paths, so it must be served as /admin/
-app.get("/admin", (req, res) => res.redirect(301, "/admin/"));
+app.get("/admin", (req, res, next) => (req.originalUrl.split("?")[0] === "/admin" ? res.redirect(301, "/admin/") : next()));
 app.use(express.static(pub, { extensions: ["html"], maxAge: isProd ? "1h" : 0 }));
 app.get("/admin*", (req, res) => res.sendFile(path.join(pub, "admin", "index.html")));
 app.use((req, res) => res.status(404).sendFile(path.join(pub, "404.html")));
