@@ -49,3 +49,7 @@ test/             API tests (node:test)
 - The images in `public/assets/img` were generated in Canva. They are low-resolution previews for now. Replace them with the full-size files and keep the same file names.
 - The seeded news items are based on titles from the old site. Check their dates and text in the admin panel.
 - Back up the `data/` folder regularly. It holds all requests and content.
+
+## Статична версия (GitHub Pages)
+
+`npm run build:pages` прави копие на публичния сайт в `docs/`, с вградени данни, без админ панел и без сървър. Формите там работят в демо режим. В GitHub: Settings → Pages → Deploy from a branch → този клон, папка `/docs`. Ако Pages е настроен на корена (`/`), `index.html` в корена пренасочва към `docs/`.
