@@ -165,10 +165,14 @@
     <!-- Services -->
     <section class="section section--dark" id="services">
       <div class="container">
-        <header class="section__head reveal">
-          <p class="eyebrow">Услуги</p>
-          <h2 data-only="home">Всичко за дома на едно място</h2>
-          <h2 data-only="business">Цялостни решения за вашия обект</h2>
+        <header class="section__head section__head--row reveal">
+          <div>
+            <p class="eyebrow">Услуги</p>
+            <h2 data-only="home">Всичко за дома на едно място</h2>
+            <h2 data-only="business">Цялостни решения за вашия обект</h2>
+          </div>
+          <p class="section__lead" data-only="home">Интернет, телевизия, техника и сервиз от един доставчик, с един телефон за всичко и екип, който е на 5 минути от вас.</p>
+          <p class="section__lead" data-only="business">Проектираме, изграждаме и поддържаме мрежата, камерите и достъпа на обекта ви. С наши екипи, без подизпълнители.</p>
         </header>
         <div class="cards" id="services-grid"></div>
       </div>
@@ -176,7 +180,7 @@
 
     <!-- IPTV features (home) / Business process -->
     <section class="section" id="features">
-      <div class="container split">
+      <div class="container split split--center">
         <div class="split__text reveal">
           <p class="eyebrow eyebrow--dark" data-only="home">Интерактивна телевизия</p>
           <p class="eyebrow eyebrow--dark" data-only="business">Как работим</p>
@@ -184,6 +188,9 @@
           <h2 data-only="business">От огледа до поддръжката</h2>
           <p class="muted" data-only="home">Над 190 български и чуждестранни канала, от които над 65 в HD. Един приемник е включен във всеки пакет интернет + телевизия.</p>
           <p class="muted" data-only="business">Проектираме, изграждаме и поддържаме – с наши екипи и по собствена мрежа, без посредници.</p>
+          <ol class="steps" id="features-list"></ol>
+        </div>
+        <div class="split__visual reveal">
           <figure class="mock mock--tv" data-only="home" aria-label="Интерфейс на интерактивната телевизия">
             <div class="tv">
               <div class="tv__screen">
@@ -211,7 +218,6 @@
             </div>
           </figure>
         </div>
-        <ol class="steps" id="features-list"></ol>
       </div>
     </section>
 
@@ -276,13 +282,34 @@
 
     <!-- Sign up / support / callback -->
     <section class="section" id="signup">
-      <div class="container split">
+      <div class="container split split--form">
         <div class="split__text reveal">
           <p class="eyebrow eyebrow--dark">Свържете се с нас</p>
           <h2 data-only="home">Ще отнеме минута.</h2>
           <h2 data-only="business">Разкажете ни за обекта.</h2>
           <p class="muted">Всяка заявка получава номер, с който можете да следите какво се случва с нея.</p>
-          <a class="bigphone" data-s-tel="mobile" href="tel:0898819299"><span data-s="mobile">0898 819 299</span></a>
+          <ol class="journey">
+            <li><span class="journey__dot">1</span><div><b>Изпращате заявка</b><p>Получавате номер веднага, без регистрация.</p></div></li>
+            <li><span class="journey__dot">2</span><div><b>Обаждаме се до 1 работен ден</b><p>Проверяваме адреса и уточняваме удобен час.</p></div></li>
+            <li><span class="journey__dot">3</span><div><b>Включваме ви</b><p>Техник идва, свързва и настройва всичко на място.</p></div></li>
+          </ol>
+          <ul class="perks">
+            <li>Безсрочен договор</li>
+            <li>Поддръжка 24/7</li>
+            <li>Собствена оптична мрежа</li>
+            <li data-only="home">Приемник в пакета</li>
+            <li data-only="business">Проект и монтаж</li>
+          </ul>
+          <div class="reach">
+            <a class="reach__item" data-s-tel="mobile" href="tel:0898819299">
+              <span class="reach__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span>
+              <span><small>Денонощно</small><b data-s="mobile">0898 819 299</b></span>
+            </a>
+            <a class="reach__item" data-s-mail="email" href="mailto:office.globalnet@gmail.com">
+              <span class="reach__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+              <span><small>Имейл</small><b data-s="email">office.globalnet@gmail.com</b></span>
+            </a>
+          </div>
           <p class="muted small" data-s="support_hours">Техническа поддръжка 24/7 · Екипи на терен 09:00 – 19:00</p>
         </div>
 
@@ -333,12 +360,21 @@
           <p class="eyebrow">Проследи заявка</p>
           <h2>Къде е моята заявка?</h2>
           <p class="muted">Въведете номера на заявката (напр. GN-7K3P9Q) и телефона, с който сте я подали.</p>
+          <form class="track__form" id="track-form" novalidate>
+            <label class="field"><span>Номер на заявка</span><input id="t-code" name="code" placeholder="GN-" autocomplete="off" required></label>
+            <label class="field"><span>Телефон</span><input id="t-phone" name="phone" type="tel" required></label>
+            <button class="btn btn--light" type="submit">Провери</button>
+          </form>
         </div>
-        <form class="track__form reveal" id="track-form" novalidate>
-          <label class="field"><span>Номер на заявка</span><input id="t-code" name="code" placeholder="GN-" autocomplete="off" required></label>
-          <label class="field"><span>Телефон</span><input id="t-phone" name="phone" type="tel" required></label>
-          <button class="btn btn--light" type="submit">Провери</button>
-        </form>
+        <div class="track__preview reveal" id="track-preview" aria-hidden="true">
+          <p class="track__preview-title">Какво ще видите</p>
+          <ol class="tl">
+            <li class="is-done"><span></span><div><b>Получена</b><small>Заявката е в системата</small></div></li>
+            <li class="is-done"><span></span><div><b>В обработка</b><small>Проверяваме адреса и покритието</small></div></li>
+            <li class="is-now"><span></span><div><b>Насрочена</b><small>Ден и час за посещение на техник</small></div></li>
+            <li><span></span><div><b>Изпълнена</b><small>Услугата е активна</small></div></li>
+          </ol>
+        </div>
         <div class="track__result" id="track-result" aria-live="polite"></div>
       </div>
     </section>
@@ -350,6 +386,15 @@
           <p class="eyebrow eyebrow--dark">Често задавани въпроси</p>
           <h2>Имате въпрос?</h2>
           <p class="muted">Ако не намирате отговор, обадете ни се – отговаряме денонощно.</p>
+          <div class="help-card">
+            <span class="help-card__badge"><i></i> На линия 24/7</span>
+            <p class="help-card__title">Нужна е помощ сега?</p>
+            <a class="help-card__phone" data-s-tel="mobile" href="tel:0898819299"><span data-s="mobile">0898 819 299</span></a>
+            <div class="help-card__actions">
+              <a class="btn btn--light btn--sm" href="#signup" data-open-tab="callback">Обадете ми се</a>
+              <a class="btn btn--ghost btn--sm" href="#signup" data-open-tab="support">Подай сигнал</a>
+            </div>
+          </div>
         </div>
         <div class="faq" id="faq-list"></div>
       </div>
@@ -362,10 +407,17 @@
           <p class="eyebrow">Контакти</p>
           <h2>Заповядайте при нас</h2>
         </header>
-        <div class="offices" id="offices"></div>
-        <div class="map reveal">
-          <iframe title="Карта – Global Net, бул. Булаир 27, Кърджали" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=41.6388,25.3735&z=16&output=embed"></iframe>
+        <div class="contact-grid">
+          <div class="offices" id="offices"></div>
+          <div class="map reveal">
+            <div class="map__fallback" aria-hidden="true"><span class="map__pin"></span></div>
+            <iframe title="Карта – Global Net, бул. Булаир 27, Кърджали" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=41.6388,25.3735&z=16&output=embed"></iframe>
+            <div class="map__card">
+              <div><small>Централен офис</small><b data-s="address">бул. Булаир 27, Кърджали 6600</b></div>
+              <a class="btn btn--light btn--sm" href="https://www.google.com/maps/search/?api=1&query=41.6388,25.3735" target="_blank" rel="noopener">Упътване</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

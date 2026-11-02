@@ -111,9 +111,14 @@
     const homePrices = DATA.plans.filter(p => p.segment === "home" && p.type !== "tv" && p.price != null).map(p => p.price);
     if (homePrices.length) $("#min-price").textContent = Math.min(...homePrices);
 
-    $("#services-grid").innerHTML = DATA.services.filter(s => s.segment === seg).map((s, i) =>
-      `<article class="card${s.image ? " card--image" : ""}" style="--i:${i}">
-        ${s.image ? `<div class="card__img" style="background-image:url('${esc(s.image)}')" aria-hidden="true"></div>` : ""}
+    // Services: pick a column count that leaves no empty cells; the last card stretches if needed.
+    const svc = DATA.services.filter(s => s.segment === seg), n = svc.length;
+    const cols = n <= 4 ? Math.max(n, 1) : n % 4 === 0 ? 4 : 3;
+    const tail = n % cols ? cols - (n % cols) + 1 : 1;
+    const grid = $("#services-grid");
+    grid.style.setProperty("--cols", cols);
+    grid.innerHTML = svc.map((s, i) =>
+      `<article class="card" style="--i:${i}${i === n - 1 && tail > 1 ? `;grid-column:span ${tail}` : ""}">
         ${icon(s.icon)}<h3>${esc(s.title)}</h3><p>${esc(s.text)}</p>
       </article>`).join("");
 
@@ -346,6 +351,7 @@
     e.preventDefault();
     const code = $("#t-code").value.trim().toUpperCase(), phone = $("#t-phone").value.trim();
     const out = $("#track-result");
+    $("#track-preview").classList.add("is-hidden");
     if (!code || !phone) { out.innerHTML = `<p class="track__err">Въведете номер на заявка и телефон.</p>`; return; }
     out.innerHTML = `<div class="skeleton"></div>`;
     let r;
@@ -454,4 +460,10 @@
     const last = store.get("gn-last-code"); if (last && !$("#t-code").value) $("#t-code").value = last;
   }
   init();
+
+  // Shortcuts that open a specific tab of the request form
+  document.addEventListener("click", e => {
+    const a = e.target.closest("[data-open-tab]"); if (!a) return;
+    const t = document.querySelector(`.tab[data-form-type="${a.dataset.openTab}"]`); if (t) t.click();
+  });
 })();
