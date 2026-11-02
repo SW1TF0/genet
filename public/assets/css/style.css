@@ -947,3 +947,29 @@ h2 { font-weight: 800; font-size: clamp(2rem, 4.2vw, 3.2rem); text-wrap: balance
 ::selection { background: rgba(255,138,196,.35); }
 .hero__glow--pink { width: 760px; height: 760px; right: -260px; top: 8%; background: radial-gradient(circle, rgba(255,138,196,.55), rgba(214,120,255,.22) 45%, transparent 70%); filter: blur(50px); animation: float 14s ease-in-out infinite; }
 @media (max-width: 760px) { .hero__glow--pink { width: 340px; height: 340px; right: -140px; top: 30%; } }
+
+/* ===== v8: plan grid without lonely cards ===== */
+.plans { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 340px)); justify-content: center; gap: 22px; }
+.plans .plan { max-width: none; }
+.plan--wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1.25fr .85fr; column-gap: 36px; align-items: center;
+  grid-template-areas: "top list price" "name list price" "speed list cta" "extra list cta"; padding: 28px 32px; }
+.plan--wide .plan__top { grid-area: top; }
+.plan--wide .plan__name { grid-area: name; }
+.plan--wide .plan__speed { grid-area: speed; }
+.plan--wide .plan__extra { grid-area: extra; }
+.plan--wide .plan__meter { display: none; }
+.plan--wide .plan__list { grid-area: list; margin: 0; padding: 0 0 0 36px; border-left: 1px solid var(--gray-200); align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+.plan--wide .plan__price { grid-area: price; margin: 0; padding: 0; border: 0; align-self: end; }
+.plan--wide .plan__cta { grid-area: cta; margin-top: 16px; align-self: start; }
+@media (max-width: 1080px) {
+  .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .plans[style*="--cols: 1"] { grid-template-columns: minmax(0, 360px); }
+  .plans .plan:last-child:nth-child(odd):not(:only-child) { grid-column: 1 / -1; }
+}
+@media (max-width: 860px) {
+  .plan--wide { display: flex; padding: 26px 24px 24px; }
+  .plan--wide .plan__meter { display: block; }
+  .plan--wide .plan__list { border: 0; padding: 0; margin: 18px 0; }
+  .plan--wide .plan__price { margin-top: 16px; }
+}
+@media (max-width: 640px) { .plans { grid-template-columns: 1fr; } }

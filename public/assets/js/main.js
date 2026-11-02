@@ -106,7 +106,14 @@
     if (!DATA) return;
     const seg = root.dataset.segment;
     const plans = DATA.plans.filter(p => p.segment === seg && (seg !== "home" || currentFilter === "all" || p.type === currentFilter));
-    $("#plans-grid").innerHTML = plans.map(planCard).join("") || `<p class="muted">Няма планове в тази категория.</p>`;
+    // Up to 3 per row; if the last row would hold a single card, that card becomes a wide horizontal one.
+    const pcols = Math.min(Math.max(plans.length, 1), 3);
+    const pg = $("#plans-grid");
+    pg.style.setProperty("--cols", pcols);
+    pg.innerHTML = plans.map((p, i) => {
+      const html = planCard(p, i);
+      return plans.length > pcols && plans.length % pcols === 1 && i === plans.length - 1 ? html.replace('class="plan', 'class="plan plan--wide') : html;
+    }).join("") || `<p class="muted">Няма планове в тази категория.</p>`;
 
     const homePrices = DATA.plans.filter(p => p.segment === "home" && p.type !== "tv" && p.price != null).map(p => p.price);
     if (homePrices.length) $("#min-price").textContent = Math.min(...homePrices);
