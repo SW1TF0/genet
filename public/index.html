@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="bg" data-segment="home">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Global Net – Интернет и телевизия в Кърджали</title>
+  <meta name="description" content="Global Net – оптичен GPON интернет до 600 Mbps, интерактивна IPTV телевизия, видеонаблюдение и сервиз в Кърджали и региона. Над 20 години опит.">
+  <meta name="theme-color" content="#0a1f44">
+  <meta property="og:title" content="Global Net – Интернет и телевизия в Кърджали">
+  <meta property="og:description" content="Оптичен интернет до 600 Mbps и IPTV с над 190 канала. От 13 € на месец.">
+  <meta property="og:image" content="assets/img/hero-fiber.png">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="page-curtain" aria-hidden="true"></div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <!-- Announcement (editable in the admin panel) -->
+  <div class="announce" id="announce" hidden>
+    <div class="container announce__inner">
+      <span class="announce__dot" aria-hidden="true"></span>
+      <a href="#plans" id="announce-text"></a>
+      <button class="announce__close" id="announce-close" aria-label="Затвори">×</button>
+    </div>
+  </div>
+
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <span data-s="address">бул. Булаир 27, Кърджали 6600</span>
+      <span class="topbar__right">
+        <a data-s-tel="phone" data-s="phone" href="tel:036182320">0361 82320</a>
+        <a data-s-tel="mobile" href="tel:0898819299"><span data-s="mobile">0898 819 299</span> · 24/7</a>
+        <a data-s-mail="email" data-s="email" href="mailto:office.globalnet@gmail.com">office.globalnet@gmail.com</a>
+      </span>
+    </div>
+  </div>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#top" class="logo" aria-label="Global Net – начало">
+        <span class="logo__mark" aria-hidden="true"></span>
+        <span class="logo__text">GLOBAL<b>NET</b></span>
+      </a>
+
+      <div class="segment" role="tablist" aria-label="Изберете тип клиент">
+        <button class="segment__btn is-active" role="tab" aria-selected="true" data-set-segment="home">За дома</button>
+        <button class="segment__btn" role="tab" aria-selected="false" data-set-segment="business">За бизнеса</button>
+        <span class="segment__pill" aria-hidden="true"></span>
+      </div>
+
+      <nav class="nav" id="nav" aria-label="Основно меню">
+        <a href="#plans">Планове</a>
+        <a href="#services">Услуги</a>
+        <a href="#coverage">Покритие</a>
+        <a href="#track">Проследи заявка</a>
+        <a href="#contact">Контакти</a>
+        <a data-s-href="pay_url" href="https://pay.tlux.online/auth" target="_blank" rel="noopener" class="nav__pay">Плати онлайн</a>
+        <a href="#signup" class="btn btn--light btn--sm">Включи се</a>
+      </nav>
+
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__media" aria-hidden="true" style="background-image:url('assets/img/hero-fiber.png')"></div>
+      <div class="hero__grid" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <p class="eyebrow reveal" data-only="home">Интернет и телевизия · Кърджали и региона</p>
+        <p class="eyebrow reveal" data-only="business">Решения за бизнеса · Кърджали и региона</p>
+
+        <h1 class="hero__title reveal">
+          <span data-only="home">Свързаност,<br>на която можеш<br>да <span class="hero__type" id="hero-type">разчиташ</span>.</span>
+          <span data-only="business">Мрежата, на която<br>работи вашият<br>бизнес.</span>
+        </h1>
+
+        <p class="hero__lead reveal" data-only="home">Оптичен GPON интернет до 300 Mbps и интерактивна телевизия с над 190 канала – по собствена подземна мрежа. От <b id="min-price">13</b> € на месец.</p>
+        <p class="hero__lead reveal" data-only="business">FTTH оптика до 600 Mbps, видеонаблюдение, мрежи, контрол на достъпа и сервиз – от един партньор с над 20 години опит.</p>
+
+        <div class="hero__actions reveal">
+          <a href="#plans" class="btn btn--light">Виж плановете</a>
+          <a href="#signup" class="btn btn--ghost" data-only="home">Заяви включване</a>
+          <a href="#signup" class="btn btn--ghost" data-only="business">Поискай оферта</a>
+        </div>
+
+        <dl class="stats reveal">
+          <div><dt><span data-count="20">20</span>+</dt><dd>години опит</dd></div>
+          <div data-only="home"><dt><span data-count="300">300</span></dt><dd>Mbps по оптика</dd></div>
+          <div data-only="business"><dt><span data-count="600">600</span></dt><dd>Mbps по оптика</dd></div>
+          <div data-only="home"><dt><span data-count="190">190</span>+</dt><dd>ТВ канала</dd></div>
+          <div data-only="business"><dt>FTTH</dt><dd>директна оптика</dd></div>
+          <div><dt>24/7</dt><dd>техническа поддръжка</dd></div>
+        </dl>
+      </div>
+      <a href="#plans" class="hero__scroll" aria-label="Надолу"><span></span></a>
+    </section>
+
+    <!-- Plans -->
+    <section class="section" id="plans">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow eyebrow--dark">Планове</p>
+          <h2 data-only="home">Избери своя план</h2>
+          <h2 data-only="business">Интернет за бизнеса</h2>
+          <p class="muted" data-only="home">Всички цени са в евро с ДДС. Безсрочен договор, такса включване 15 €.</p>
+          <p class="muted" data-only="business">Всички цени са в евро с ДДС. Без такса включване за бизнес плана.</p>
+        </header>
+
+        <div class="plans-toolbar reveal" data-only="home">
+          <div class="filters" role="tablist" aria-label="Тип план">
+            <button class="filter is-active" data-filter="all">Всички</button>
+            <button class="filter" data-filter="internet">Интернет</button>
+            <button class="filter" data-filter="combo">Интернет + ТВ</button>
+            <button class="filter" data-filter="tv">Телевизия</button>
+          </div>
+          <button class="link-btn" id="open-advisor">Не знаеш кой план? Помогни ми да избера →</button>
+        </div>
+
+        <div class="plans" id="plans-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Promotions -->
+    <section class="section section--tight-top" id="promotions" hidden>
+      <div class="container">
+        <div class="promos" id="promos"></div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section section--dark" id="services">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Услуги</p>
+          <h2 data-only="home">Всичко за дома на едно място</h2>
+          <h2 data-only="business">Цялостни решения за вашия обект</h2>
+        </header>
+        <div class="cards" id="services-grid"></div>
+      </div>
+    </section>
+
+    <!-- IPTV features (home) / Business process -->
+    <section class="section" id="features">
+      <div class="container split">
+        <div class="split__text reveal">
+          <p class="eyebrow eyebrow--dark" data-only="home">Интерактивна телевизия</p>
+          <p class="eyebrow eyebrow--dark" data-only="business">Как работим</p>
+          <h2 data-only="home">Телевизия, която следва твоя ритъм</h2>
+          <h2 data-only="business">От огледа до поддръжката</h2>
+          <p class="muted" data-only="home">Над 190 български и чуждестранни канала, от които над 65 в HD. Един приемник е включен във всеки пакет интернет + телевизия.</p>
+          <p class="muted" data-only="business">Проектираме, изграждаме и поддържаме – с наши екипи и по собствена мрежа, без посредници.</p>
+          <figure class="split__media" data-only="home"><img src="assets/img/home-tv.png" alt="Семейство гледа телевизия вкъщи" loading="lazy"></figure>
+          <figure class="split__media" data-only="business"><img src="assets/img/business-network.png" alt="Сървърно и мрежово оборудване" loading="lazy"></figure>
+        </div>
+        <ol class="steps" id="features-list"></ol>
+      </div>
+    </section>
+
+    <!-- Coverage -->
+    <section class="section section--dark coverage" id="coverage">
+      <div class="coverage__bg" aria-hidden="true" style="background-image:url('assets/img/coverage.png')"></div>
+      <div class="container coverage__inner">
+        <div class="reveal">
+          <p class="eyebrow">Покритие</p>
+          <h2>Има ли Global Net при вас?</h2>
+          <p class="muted">Въведете населено място или квартал. Ако още не сме при вас, оставете телефон – ще ви се обадим, когато стигнем.</p>
+        </div>
+        <form class="coverage__form reveal" id="coverage-form" autocomplete="off">
+          <label class="sr-only" for="coverage-input">Населено място или квартал</label>
+          <input id="coverage-input" list="coverage-list" placeholder="напр. Кърджали, Възрожденци…">
+          <datalist id="coverage-list"></datalist>
+          <button class="btn btn--light" type="submit">Провери</button>
+        </form>
+        <div class="coverage__result" id="coverage-result" role="status" aria-live="polite"></div>
+        <ul class="coverage__chips reveal" id="coverage-chips"></ul>
+      </div>
+    </section>
+
+    <!-- Why us -->
+    <section class="section" id="why">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow eyebrow--dark">Защо Global Net</p>
+          <h2>Местен доставчик. Собствена мрежа.</h2>
+        </header>
+        <div class="why">
+          <article class="why__item reveal"><span class="why__icon" aria-hidden="true">♥</span><h3>Индивидуален подход</h3><p>Всеки клиент ни е приятел. Познаваме града и хората в него.</p></article>
+          <article class="why__item reveal"><span class="why__icon" aria-hidden="true">☏</span><h3>Поддръжка 24/7</h3><p>Техническа помощ денонощно на <span data-s="mobile">0898 819 299</span>.</p></article>
+          <article class="why__item reveal"><span class="why__icon" aria-hidden="true">⇄</span><h3>Гъвкави условия</h3><p>Безсрочни договори, възможност за спиране на услугата, програми „Лоялност“ и „Индивидуалност“.</p></article>
+          <article class="why__item reveal"><span class="why__icon" aria-hidden="true">◎</span><h3>Подземна оптична мрежа</h3><p>Изцяло контролирана от нас GPON мрежа – стабилна при всяко време.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clients (business) -->
+    <section class="section section--tight" data-only="business">
+      <div class="container">
+        <p class="eyebrow eyebrow--dark reveal">Доверяват ни се</p>
+        <div class="marquee reveal"><ul class="clients" id="clients">
+          <li>Община Кърджали</li><li>Областна администрация</li><li>Serta Group</li><li>Unitech</li><li>Teklas</li><li>Haloila Bulgaria</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <!-- News -->
+    <section class="section section--soft" id="news">
+      <div class="container">
+        <header class="section__head section__head--row reveal">
+          <div>
+            <p class="eyebrow eyebrow--dark">Новини</p>
+            <h2>Global Net в общността</h2>
+          </div>
+        </header>
+        <div class="news" id="news-grid"></div>
+      </div>
+    </section>
+
+    <!-- Sign up / support / callback -->
+    <section class="section" id="signup">
+      <div class="container split">
+        <div class="split__text reveal">
+          <p class="eyebrow eyebrow--dark">Свържете се с нас</p>
+          <h2 data-only="home">Ще отнеме минута.</h2>
+          <h2 data-only="business">Разкажете ни за обекта.</h2>
+          <p class="muted">Всяка заявка получава номер, с който можете да следите какво се случва с нея.</p>
+          <a class="bigphone" data-s-tel="mobile" href="tel:0898819299"><span data-s="mobile">0898 819 299</span></a>
+          <p class="muted small" data-s="support_hours">Техническа поддръжка 24/7 · Екипи на терен 09:00 – 19:00</p>
+        </div>
+
+        <div class="form-wrap reveal">
+          <div class="tabs" role="tablist" aria-label="Тип запитване">
+            <button class="tab is-active" role="tab" data-form-type="signup"><span data-only="home">Включване</span><span data-only="business">Оферта</span></button>
+            <button class="tab" role="tab" data-form-type="support">Проблем с услугата</button>
+            <button class="tab" role="tab" data-form-type="callback">Обадете ми се</button>
+          </div>
+
+          <form class="form" id="request-form" novalidate>
+            <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="form__grid">
+              <label class="field"><span>Имена *</span><input id="f-name" name="name" required autocomplete="name"></label>
+              <label class="field"><span>Телефон *</span><input id="f-phone" name="phone" type="tel" required autocomplete="tel"></label>
+              <label class="field" data-for="business"><span>Фирма</span><input id="f-company" name="company" autocomplete="organization"></label>
+              <label class="field" data-for="signup support"><span>Имейл</span><input id="f-email" name="email" type="email" autocomplete="email"></label>
+              <label class="field field--wide" data-for="signup support"><span>Адрес *</span><input id="f-address" name="address" autocomplete="street-address"></label>
+              <label class="field field--wide" data-for="signup"><span>План / услуга</span><select id="plan-select" name="plan"></select></label>
+              <label class="field field--wide" data-for="support"><span>Какъв е проблемът? *</span>
+                <select id="f-topic" name="topic"><option>Интернет</option><option>Телевизия</option><option>Хардуерен проблем</option><option>Софтуерен проблем</option><option>Друго</option></select></label>
+              <label class="field field--wide" data-for="signup support callback"><span id="msg-label">Коментар</span><textarea id="f-message" name="message" rows="3"></textarea></label>
+            </div>
+            <label class="check"><input type="checkbox" id="f-consent" required> <span>Съгласен/на съм данните ми да бъдат използвани за обработка на заявката съгласно <a href="https://globalnet-bg.com/informaciq/gdpr/" target="_blank" rel="noopener">Политиката за поверителност</a>.</span></label>
+            <button class="btn btn--dark btn--block" type="submit" id="form-submit">Изпрати заявката</button>
+            <p class="form__note" id="form-note" role="status"></p>
+          </form>
+
+          <div class="success" id="form-success" hidden>
+            <div class="success__check" aria-hidden="true"></div>
+            <h3>Благодарим! Заявката е приета.</h3>
+            <p>Номер на заявката:</p>
+            <p class="success__code" id="success-code">GN-XXXXXX</p>
+            <p class="muted">Запазете го – с него и телефона си можете да проследите заявката по-долу. Ще се свържем с вас до един работен ден.</p>
+            <div class="success__actions">
+              <a href="#track" class="btn btn--dark" id="success-track">Проследи заявката</a>
+              <button class="btn btn--outline" id="success-new">Нова заявка</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Track -->
+    <section class="section section--dark" id="track">
+      <div class="container track">
+        <div class="reveal">
+          <p class="eyebrow">Проследи заявка</p>
+          <h2>Къде е моята заявка?</h2>
+          <p class="muted">Въведете номера на заявката (напр. GN-7K3P9Q) и телефона, с който сте я подали.</p>
+        </div>
+        <form class="track__form reveal" id="track-form" novalidate>
+          <label class="field"><span>Номер на заявка</span><input id="t-code" name="code" placeholder="GN-" autocomplete="off" required></label>
+          <label class="field"><span>Телефон</span><input id="t-phone" name="phone" type="tel" required></label>
+          <button class="btn btn--light" type="submit">Провери</button>
+        </form>
+        <div class="track__result" id="track-result" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container split">
+        <div class="split__text reveal">
+          <p class="eyebrow eyebrow--dark">Често задавани въпроси</p>
+          <h2>Имате въпрос?</h2>
+          <p class="muted">Ако не намирате отговор, обадете ни се – отговаряме денонощно.</p>
+        </div>
+        <div class="faq" id="faq-list"></div>
+      </div>
+    </section>
+
+    <!-- Contacts -->
+    <section class="section section--dark" id="contact">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Контакти</p>
+          <h2>Заповядайте при нас</h2>
+        </header>
+        <div class="offices" id="offices"></div>
+        <div class="map reveal">
+          <iframe title="Карта – Global Net, бул. Булаир 27, Кърджали" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=41.6388,25.3735&z=16&output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <a href="#top" class="logo logo--footer"><span class="logo__mark" aria-hidden="true"></span><span class="logo__text">GLOBAL<b>NET</b></span></a>
+        <p class="muted">Интернет и телевизия в Кърджали и региона от над 20 години.</p>
+      </div>
+      <div>
+        <h4>Услуги</h4>
+        <a href="#plans">Интернет</a><a href="#plans">IPTV телевизия</a><a href="#services">Видеонаблюдение</a><a href="#services">Сервиз и услуги</a><a href="#coverage">Покритие</a>
+      </div>
+      <div>
+        <h4>За потребителя</h4>
+        <a href="https://globalnet-bg.com/informaciq/obshti-usloviq-consult/">Общи условия – Консулт</a>
+        <a href="https://globalnet-bg.com/informaciq/obshti-usloviq-grup/">Общи условия – Груп</a>
+        <a href="https://globalnet-bg.com/informaciq/gdpr/">Политика за поверителност</a>
+        <a href="#faq">Често задавани въпроси</a>
+        <a href="#track">Проследи заявка</a>
+      </div>
+      <div>
+        <h4>Свържете се</h4>
+        <a data-s-tel="mobile" href="tel:0898819299"><span data-s="mobile">0898 819 299</span></a>
+        <a data-s-mail="email" href="mailto:office.globalnet@gmail.com"><span data-s="email">office.globalnet@gmail.com</span></a>
+        <a data-s-href="facebook" href="https://www.facebook.com/GlobalNet.Kardzhali/" target="_blank" rel="noopener">Facebook</a>
+        <a data-s-href="pay_url" href="https://pay.tlux.online/auth" target="_blank" rel="noopener">Плати сметката онлайн</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© <span id="year">2026</span> <span data-s="legal_names">Глобал Нет Консулт ЕООД · Глобал Нет Груп ЕООД</span></span>
+      <a href="#top">Нагоре ↑</a>
+    </div>
+  </footer>
+
+  <!-- Floating actions -->
+  <a class="fab" data-s-tel="mobile" href="tel:0898819299" aria-label="Обадете се"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></a>
+
+  <!-- Plan advisor dialog -->
+  <dialog class="modal" id="advisor">
+    <form method="dialog" class="modal__close-form"><button class="modal__close" aria-label="Затвори">×</button></form>
+    <div class="advisor" id="advisor-body"></div>
+  </dialog>
+
+  <!-- News dialog -->
+  <dialog class="modal modal--wide" id="news-modal">
+    <form method="dialog" class="modal__close-form"><button class="modal__close" aria-label="Затвори">×</button></form>
+    <article id="news-article"></article>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
