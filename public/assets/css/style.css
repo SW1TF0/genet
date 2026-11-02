@@ -945,3 +945,5 @@ h2 { font-weight: 800; font-size: clamp(2rem, 4.2vw, 3.2rem); text-wrap: balance
 .help-card::before { content: ""; position: absolute; left: -60px; bottom: -80px; width: 220px; height: 220px; border-radius: 50%; background: rgba(255,138,196,.14); filter: blur(50px); pointer-events: none; }
 .map__pin { background: var(--pink); box-shadow: 0 0 0 8px rgba(255,138,196,.22), 0 0 0 18px rgba(255,138,196,.08); }
 ::selection { background: rgba(255,138,196,.35); }
+.hero__glow--pink { width: 760px; height: 760px; right: -260px; top: 8%; background: radial-gradient(circle, rgba(255,138,196,.55), rgba(214,120,255,.22) 45%, transparent 70%); filter: blur(50px); animation: float 14s ease-in-out infinite; }
+@media (max-width: 760px) { .hero__glow--pink { width: 340px; height: 340px; right: -140px; top: 30%; } }
