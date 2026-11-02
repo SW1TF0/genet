@@ -80,18 +80,25 @@
   }
 
   /* ---------------- Plans ---------------- */
+  const CHECK = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   function planCard(p, i) {
-    const big = p.speed ? `${p.speed}<small>Mbps</small>` : p.type === "tv" ? `${p.channels || 180}+<small>канала</small>` : `24/7<small>поддръжка</small>`;
-    const price = p.price != null ? `<b>${String(p.price).replace(".", ",")} €</b> <span class="muted">/ месец</span>` : `<b>Оферта</b> <span class="muted">по заявка</span>`;
+    let big;
+    if (p.speed) big = `<span class="plan__num">${p.speed}</span><span class="plan__unit">Mbps</span>`;
+    else if (p.type === "tv") big = `<span class="plan__num">${p.channels || 180}+</span><span class="plan__unit">канала</span>`;
+    else big = `<span class="plan__num plan__num--sm">Комплексно решение</span>`;
+    const extra = p.type === "combo" && p.channels ? `+ ${p.channels}+ ТВ канала` : p.type === "internet" ? (p.segment === "business" ? "FTTH оптика" : "GPON оптика") : p.type === "tv" ? "IPTV · 60+ в HD" : "Безплатен оглед";
+    const price = p.price != null
+      ? `<span class="plan__amount">${String(p.price).replace(".", ",")}</span><span class="plan__per"><b>€</b><small>на месец</small></span>`
+      : `<span class="plan__amount plan__amount--text">Цена по оферта</span>`;
     return `<article class="plan${p.featured ? " plan--featured" : ""}" style="--i:${i}">
-      ${p.badge ? `<span class="plan__badge">${esc(p.badge)}</span>` : ""}
-      <p class="plan__type">${TYPE_LABEL[p.type] || ""}</p>
+      <div class="plan__top"><span class="plan__type">${TYPE_LABEL[p.type] || ""}</span>${p.badge ? `<span class="plan__badge">${esc(p.badge)}</span>` : ""}</div>
       <h3 class="plan__name">${esc(p.name)}</h3>
       <div class="plan__speed">${big}</div>
-      ${p.speed ? `<div class="plan__meter" aria-hidden="true"><span style="--w:${Math.min(100, Math.round(p.speed / 6))}%"></span></div>` : ""}
-      <p class="plan__price">${price}</p>
-      <ul class="plan__list">${(p.features || []).map(f => `<li>${esc(f)}</li>`).join("")}</ul>
-      <a href="#signup" class="btn btn--outline" data-pick-plan="${esc(p.name)}">${p.price != null ? "Заяви включване" : "Поискай оферта"}</a>
+      <div class="plan__extra"><span class="plan__chip">${extra}</span></div>
+      ${p.speed ? `<div class="plan__meter" aria-hidden="true"><span style="--w:${Math.max(8, Math.min(100, Math.round(p.speed / 6)))}%"></span></div>` : `<div class="plan__meter plan__meter--empty" aria-hidden="true"></div>`}
+      <div class="plan__price">${price}</div>
+      <ul class="plan__list">${(p.features || []).map(f => `<li>${CHECK}<span>${esc(f)}</span></li>`).join("")}</ul>
+      <a href="#signup" class="btn ${p.featured ? "btn--light" : "btn--dark"} plan__cta" data-pick-plan="${esc(p.name)}">${p.price != null ? "Заяви включване" : "Поискай оферта"}</a>
     </article>`;
   }
 

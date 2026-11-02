@@ -762,3 +762,49 @@ h2 { font-weight: 800; font-size: clamp(2rem, 4.2vw, 3.2rem); text-wrap: balance
   .tv, .biz { transform: none; }
 }
 @media (prefers-reduced-motion: reduce) { .hero__canvas { display: none; } }
+
+/* =====================================================================
+   v5 plan cards (clean layout, no overlapping labels)
+   ===================================================================== */
+.plans { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; }
+.plan { flex: 1 1 260px; max-width: 300px; padding: 26px 24px 24px; display: flex; flex-direction: column; text-align: left; }
+.plan > * { position: relative; }
+.plan__top { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 26px; margin-bottom: 10px; }
+.plan__type { margin: 0; font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gray-600); white-space: nowrap; }
+.plan .plan__badge { position: static; flex: none; font-size: .66rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; border: 0; background: var(--accent); color: #fff; white-space: nowrap; line-height: 1.2; }
+.plan--featured .plan__badge { background: #fff; color: var(--black); }
+.plan--featured .plan__type { color: var(--accent-light); }
+.plan__name { margin: 0 0 18px; font-size: 1.3rem; font-weight: 800; line-height: 1.2; min-height: 1.2em; }
+.plan__speed { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 8px; line-height: 1; margin: 0; }
+.plan__num { font-size: 3rem; font-weight: 800; letter-spacing: -.05em; }
+.plan__num--sm { font-size: 1.9rem; letter-spacing: -.03em; }
+.plan__unit { font-size: 1rem; font-weight: 700; color: var(--gray-600); }
+.plan--featured .plan__unit { color: var(--gray-400); }
+.plan__speed small { display: none; }
+.plan__chip { flex-basis: 100%; margin-top: 10px; align-self: flex-start; width: max-content; font-size: .75rem; font-weight: 600; padding: 4px 10px; border-radius: 8px; background: var(--gray-100); color: var(--black); }
+.plan--featured .plan__chip { background: rgba(255,255,255,.12); color: #fff; }
+.plan__meter { margin-top: 16px; }
+.plan__meter--empty { background: transparent !important; }
+.plan__price { display: flex; align-items: center; gap: 8px; margin: 20px 0 20px; padding: 0 0 20px; border-bottom: 1px solid var(--gray-200); }
+.plan--featured .plan__price { border-color: rgba(255,255,255,.14); }
+.plan__amount { font-size: 2.5rem; font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+.plan__amount--text { font-size: 1.35rem; letter-spacing: -.02em; }
+.plan__per { display: flex; flex-direction: column; line-height: 1.15; }
+.plan__per b { font-size: 1.15rem; font-weight: 800; }
+.plan__per small { font-size: .75rem; color: var(--gray-600); }
+.plan--featured .plan__per small { color: var(--gray-400); }
+.plan__list { list-style: none; padding: 0; margin: 0 0 24px; flex: 1; display: grid; gap: 10px; align-content: start; font-size: .9rem; }
+.plan__list li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; align-items: start; padding: 0; margin: 0; color: var(--gray-600); line-height: 1.45; }
+.plan__list li::before { display: none; }
+.plan__list svg { width: 18px; height: 18px; padding: 2px; margin-top: 1px; border-radius: 50%; background: rgba(47,124,246,.12); color: var(--accent); }
+.plan--featured .plan__list li { color: var(--gray-200); }
+.plan--featured .plan__list svg { background: rgba(140,184,255,.18); color: var(--accent-light); }
+.plan .plan__cta { width: 100%; margin-top: auto; }
+.plan--featured .btn--light { color: var(--black); }
+.advisor__result .plan { max-width: none; }
+@media (max-width: 640px) { .plan { max-width: none; } }
+.plan__speed { letter-spacing: 0; }
+.plan__unit, .plan__chip { letter-spacing: 0; font-family: "Inter", system-ui, sans-serif; }
+.plan__chip { flex: 0 0 100%; max-width: max-content; }
+.plan__extra { margin-top: 12px; }
+.plan__extra .plan__chip { display: inline-block; margin: 0; max-width: 100%; }
