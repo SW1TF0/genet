@@ -36,7 +36,7 @@ test("request validation rejects bad input", async () => {
 
 let code;
 test("customer can submit and track a request", async () => {
-  const r = await call("/api/requests", { method: "POST", body: { type: "signup", name: "Иван Петров", phone: "0888 123 456", address: "Кърджали, ул. Тест 1", plan: "Ултра" } });
+  const r = await call("/api/requests", { method: "POST", body: { type: "signup", name: "Иван Петров", phone: "0888 123 456", address: "Кърджали, ул. Тест 1", plan: "FAMILY" } });
   assert.equal(r.status, 201);
   assert.match(r.body.code, /^GN-[A-Z0-9]{6}$/);
   code = r.body.code;

@@ -52,7 +52,7 @@
   /* ---------- Speed gauge + sparkline ---------- */
   const num = document.getElementById("gauge-num"), arc = document.getElementById("gauge-arc"), spark = document.getElementById("spark-path"), ping = document.getElementById("ping");
   if (num && arc) {
-    const max = () => (document.documentElement.dataset.segment === "business" ? 600 : 300);
+    const max = () => (document.documentElement.dataset.segment === "business" ? 600 : 1000);
     const pts = Array.from({ length: 30 }, () => 0.85 + Math.random() * 0.12);
     let cur = 0;
     const set = target => {

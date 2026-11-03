@@ -48,6 +48,8 @@
     new: { label: "Получена", step: 0 }, in_progress: { label: "В обработка", step: 1 },
     scheduled: { label: "Насрочена", step: 2 }, done: { label: "Изпълнена", step: 3 }, cancelled: { label: "Отказана", step: -1 }
   };
+  // 12.9 → "12,90"
+  const fmtPrice = v => Number(v).toFixed(2).replace(".", ",");
   const fmtDate = s => { const d = new Date(String(s).replace(" ", "T") + (String(s).length <= 10 ? "" : "Z")); return isNaN(d) ? s : d.toLocaleDateString("bg-BG", { day: "numeric", month: "long", year: "numeric" }); };
 
   /* ---------------- Toast ---------------- */
@@ -86,16 +88,16 @@
     if (p.speed) big = `<span class="plan__num">${p.speed}</span><span class="plan__unit">Mbps</span>`;
     else if (p.type === "tv") big = `<span class="plan__num">${p.channels || 180}+</span><span class="plan__unit">канала</span>`;
     else big = `<span class="plan__num plan__num--sm">Комплексно решение</span>`;
-    const extra = p.type === "combo" && p.channels ? `+ ${p.channels}+ ТВ канала` : p.type === "internet" ? (p.segment === "business" ? "FTTH оптика" : "GPON оптика") : p.type === "tv" ? "IPTV · 60+ в HD" : "Безплатен оглед";
+    const extra = p.type === "combo" ? (p.channels ? `+ ${p.channels}+ ТВ канала` : "+ ТВ + спорт") : p.type === "internet" ? (p.segment === "business" ? "FTTH оптика" : "GPON оптика") : p.type === "tv" ? "IPTV · 60+ в HD" : "Безплатен оглед";
     const price = p.price != null
-      ? `<span class="plan__amount">${String(p.price).replace(".", ",")}</span><span class="plan__per"><b>€</b><small>на месец</small></span>`
+      ? `<span class="plan__amount">${fmtPrice(p.price)}</span><span class="plan__per"><b>€</b><small>на месец</small></span>`
       : `<span class="plan__amount plan__amount--text">Цена по оферта</span>`;
     return `<article class="plan${p.featured ? " plan--featured" : ""}" style="--i:${i}">
       <div class="plan__top"><span class="plan__type">${TYPE_LABEL[p.type] || ""}</span>${p.badge ? `<span class="plan__badge">${esc(p.badge)}</span>` : ""}</div>
       <h3 class="plan__name">${esc(p.name)}</h3>
       <div class="plan__speed">${big}</div>
       <div class="plan__extra"><span class="plan__chip">${extra}</span></div>
-      ${p.speed ? `<div class="plan__meter" aria-hidden="true"><span style="--w:${Math.max(8, Math.min(100, Math.round(p.speed / 6)))}%"></span></div>` : `<div class="plan__meter plan__meter--empty" aria-hidden="true"></div>`}
+      ${p.speed ? `<div class="plan__meter" aria-hidden="true"><span style="--w:${Math.max(8, Math.min(100, Math.round(p.speed / 10)))}%"></span></div>` : `<div class="plan__meter plan__meter--empty" aria-hidden="true"></div>`}
       <div class="plan__price">${price}</div>
       <ul class="plan__list">${(p.features || []).map(f => `<li>${CHECK}<span>${esc(f)}</span></li>`).join("")}</ul>
       <a href="#signup" class="btn ${p.featured ? "btn--light" : "btn--dark"} plan__cta" data-pick-plan="${esc(p.name)}">${p.price != null ? "Заяви включване" : "Поискай оферта"}</a>
@@ -107,16 +109,18 @@
     const seg = root.dataset.segment;
     const plans = DATA.plans.filter(p => p.segment === seg && (seg !== "home" || currentFilter === "all" || p.type === currentFilter));
     // Up to 3 per row; if the last row would hold a single card, that card becomes a wide horizontal one.
-    const pcols = Math.min(Math.max(plans.length, 1), 3);
+    // Columns: 5 per row when that fills every row (e.g. 4 internet + IPTV, then 5 combos), else 4, else 3.
+    const pn = plans.length;
+    const pcols = pn <= 3 ? Math.max(pn, 1) : pn % 5 === 0 ? 5 : pn % 4 === 0 ? 4 : 3;
     const pg = $("#plans-grid");
     pg.style.setProperty("--cols", pcols);
     pg.innerHTML = plans.map((p, i) => {
       const html = planCard(p, i);
-      return plans.length > pcols && plans.length % pcols === 1 && i === plans.length - 1 ? html.replace('class="plan', 'class="plan plan--wide') : html;
+      return pn > pcols && pn % pcols === 1 && i === pn - 1 ? html.replace('class="plan', 'class="plan plan--wide') : html;
     }).join("") || `<p class="muted">Няма планове в тази категория.</p>`;
 
     const homePrices = DATA.plans.filter(p => p.segment === "home" && p.type !== "tv" && p.price != null).map(p => p.price);
-    if (homePrices.length) $("#min-price").textContent = Math.min(...homePrices);
+    if (homePrices.length) $("#min-price").textContent = fmtPrice(Math.min(...homePrices));
 
     // Services: pick a column count that leaves no empty cells; the last card stretches if needed.
     const svc = DATA.services.filter(s => s.segment === seg), n = svc.length;
@@ -239,9 +243,9 @@
     const result = () => {
       const score = answers[0] + answers[1], tv = answers[2];
       let name;
-      if (tv === "sport") name = "Интерактив Спорт";
-      else if (tv === "tv") name = score >= 2 ? "Ултра Интерактив" : "Интерактив";
-      else name = score >= 3 ? "Ултра" : score >= 1 ? "Спринт" : "Универсален";
+      if (tv === "sport") name = "SPORT";
+      else if (tv === "tv") name = score >= 4 ? "GIGA" : score >= 3 ? "ULTRA" : score >= 1 ? "FAMILY" : "HOME";
+      else name = score >= 4 ? "Интернет 1000" : score >= 3 ? "Интернет 500" : score >= 1 ? "Интернет 300" : "Интернет 100";
       const plan = DATA.plans.find(p => p.name === name) || DATA.plans.find(p => p.segment === "home");
       body.innerHTML = `<p class="advisor__step">Нашата препоръка</p>
         <div class="advisor__bar"><span style="width:100%"></span></div>
@@ -363,7 +367,7 @@
     out.innerHTML = `<div class="skeleton"></div>`;
     let r;
     if (OFFLINE) {
-      r = { code, status: "scheduled", plan: "Ултра", scheduled_for: "утре, 10:00 – 12:00", created_at: new Date().toISOString(), events: [
+      r = { code, status: "scheduled", plan: "FAMILY", scheduled_for: "утре, 10:00 – 12:00", created_at: new Date().toISOString(), events: [
         { status: "new", public_note: "Заявката е получена.", created_at: new Date().toISOString() },
         { status: "in_progress", public_note: "Проверихме адреса – има покритие.", created_at: new Date().toISOString() },
         { status: "scheduled", public_note: "Техник ще дойде утре между 10:00 и 12:00 ч.", created_at: new Date().toISOString() }] };

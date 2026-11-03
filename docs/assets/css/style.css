@@ -979,3 +979,18 @@ h2 { font-weight: 800; font-size: clamp(2rem, 4.2vw, 3.2rem); text-wrap: balance
 .logo:hover .logo__img { transform: rotate(-12deg) scale(1.05); }
 .logo__badge { width: 120px; height: 120px; border-radius: 50%; box-shadow: 0 12px 30px -12px rgba(0,0,0,.6); }
 .logo__img { width: 42px; height: 42px; background: none; box-shadow: none; filter: drop-shadow(0 4px 10px rgba(0,0,0,.35)); }
+
+/* ===== v10: five plans per row (4 internet + IPTV, then 5 combos) ===== */
+.plans[style*="--cols: 5"] { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+.plans[style*="--cols: 5"] .plan { padding: 22px 18px 20px; }
+.plans[style*="--cols: 5"] .plan__num { font-size: 2.5rem; }
+.plans[style*="--cols: 5"] .plan__amount { font-size: 2.2rem; }
+.plans[style*="--cols: 5"] .plan__list { font-size: .86rem; }
+.plans[style*="--cols: 5"] .plan__top { flex-wrap: wrap; row-gap: 6px; }
+@media (max-width: 1240px) { .plans[style*="--cols: 5"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .plans[style*="--cols: 5"] { grid-template-columns: 1fr; } }
+.plans[style*="--cols: 5"] .plan__cta { white-space: nowrap; padding-left: 12px; padding-right: 12px; font-size: .92rem; }
+.plans[style*="--cols: 5"] .plan .plan__badge { position: absolute; top: -11px; right: 16px; box-shadow: 0 6px 16px -6px rgba(47,124,246,.7); }
+.plans[style*="--cols: 5"] .plan--featured .plan__badge { background: var(--pink); color: #2a0b1c; box-shadow: 0 6px 16px -6px rgba(255,138,196,.8); }
+.plans[style*="--cols: 5"] .plan { position: relative; }
+.plans[style*="--cols: 5"] .plan > .plan__top { position: static; }
