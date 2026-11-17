@@ -29,6 +29,9 @@ const server = app.listen(0, async () => {
     let html = fs.readFileSync(indexPath, "utf8");
     html = html.replace('<script src="assets/js/main.js"></script>',
       '<script src="assets/js/config.js"></script>\n  <script src="assets/js/backend.js"></script>\n  <script src="assets/js/data.js"></script>\n  <script src="assets/js/main.js"></script>');
+    // Cache-bust CSS/JS so visitors get the new files right after a deploy.
+    const ver = Date.now().toString(36);
+    html = html.replace(/((?:src|href)="assets\/(?:css|js)\/[^"?]+)"/g, `$1?v=${ver}"`);
     fs.writeFileSync(indexPath, html);
     const adminPath = path.join(out, "admin", "index.html");
     let ah = fs.readFileSync(adminPath, "utf8");
